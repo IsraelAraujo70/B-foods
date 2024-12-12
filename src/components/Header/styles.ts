@@ -7,7 +7,6 @@ export const HeaderBar = styled.header`
 `
 export const HeaderBarContent = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `
 export const HeaderBarContentV = styled.div`
@@ -24,9 +23,19 @@ export const Title = styled.h1`
   font-size: 36px;
   font-weight: bold;
 `
-export const NavP = styled.p`
-  font-size: 24px;
+export const NavP1 = styled.p`
+  font-size: 22px;
   font-weight: bold;
+  margin-right: 31.2%;
+  a {
+    color: ${cores.vermelho};
+  }
+`
+
+export const NavP2 = styled.p`
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: auto;
   a {
     color: ${cores.vermelho};
     display: flex;

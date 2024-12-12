@@ -3,7 +3,8 @@ import {
   HeaderBar,
   HeaderBarContent,
   HeaderBarContentV,
-  NavP,
+  NavP1,
+  NavP2,
   Title
 } from './styles'
 import logo from '../../assets/images/Logo.svg'
@@ -31,16 +32,16 @@ const Header = ({ variant }: Props) => {
         <HeaderBar>
           <Container>
             <HeaderBarContent>
-              <NavP>
+              <NavP1>
                 <a href="">Restaurantes</a>
-              </NavP>
+              </NavP1>
               <img src={logo} alt="B foods" />
-              <NavP>
+              <NavP2>
                 <a href="">
-                  <p>0 protudos no carrinho</p>
+                  <p>0 produto(s) no carrinho</p>
                   <ShoppingCartIcon />
                 </a>
-              </NavP>
+              </NavP2>
             </HeaderBarContent>
           </Container>
         </HeaderBar>
