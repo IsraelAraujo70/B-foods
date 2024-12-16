@@ -10,8 +10,10 @@ import {
 } from './styles'
 import estrela from '../../assets/images/estrela.svg'
 import Button from '../ui/Button'
+import { Link } from 'react-router-dom'
 
 type RestauranteCardProps = {
+  id: number
   image: string
   categoria: string
   destaque?: boolean
@@ -21,6 +23,7 @@ type RestauranteCardProps = {
 }
 
 const RestauranteCard = ({
+  id,
   image,
   categoria,
   destaque,
@@ -42,7 +45,7 @@ const RestauranteCard = ({
           <DestaquesFlex>
             {destaque && (
               <div>
-                <p>Destaque</p>
+                <p>Destaque da semana</p>
               </div>
             )}
             <CategoriaDiv>
@@ -59,7 +62,9 @@ const RestauranteCard = ({
             </AvaliacaoContainer>
           </RestauranteCardTitleContainer>
           <p>{descricao}</p>
-          <Button variant="secondary" text="Saiba Mais" />
+          <Link to={`/restaurantes/${id}`}>
+            <Button variant="secondary" text="Saiba Mais" />
+          </Link>
         </RestauranteCardContent>
       </SRestauranteCard>
     </>

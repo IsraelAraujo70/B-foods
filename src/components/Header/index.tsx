@@ -1,3 +1,5 @@
+import { ShoppingCartIcon } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Container } from '../../styles'
 import {
   HeaderBar,
@@ -8,7 +10,6 @@ import {
   Title
 } from './styles'
 import logo from '../../assets/images/Logo.svg'
-import { ShoppingCartIcon } from 'lucide-react'
 
 type Props = {
   variant?: 'true' | 'false'
@@ -33,7 +34,7 @@ const Header = ({ variant }: Props) => {
           <Container>
             <HeaderBarContent>
               <NavP1>
-                <a href="">Restaurantes</a>
+                <Link to="/">Restaurantes</Link>
               </NavP1>
               <img src={logo} alt="B foods" />
               <NavP2>

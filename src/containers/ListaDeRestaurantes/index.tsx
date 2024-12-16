@@ -1,59 +1,25 @@
 import RestauranteCard from '../../components/RestauranteCard'
 import { ListaDeRestaurantes as SListaDeRestaurantes } from './styles'
-import sushi from '../../assets/images/sushi.png'
 import { Container } from '../../styles'
-const ListaDeRestaurantes = () => {
+import { Restaurant } from '../../models/Restaurant'
+type Props = { restaurantes: Restaurant[] }
+
+const ListaDeRestaurantes = ({ restaurantes }: Props) => {
   return (
     <Container>
       <SListaDeRestaurantes>
-        <RestauranteCard
-          categoria="Japonesa"
-          destaque
-          image={sushi}
-          nome="Nome Do Restaurante"
-          avaliacao={4.9}
-          descricao="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!"
-        />
-        <RestauranteCard
-          categoria="Japonesa"
-          destaque
-          image={sushi}
-          nome="Nome Do Restaurante"
-          avaliacao={4.9}
-          descricao="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!"
-        />
-        <RestauranteCard
-          categoria="Japonesa"
-          destaque
-          image={sushi}
-          nome="Nome Do Restaurante"
-          avaliacao={4.9}
-          descricao="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!"
-        />
-        <RestauranteCard
-          categoria="Japonesa"
-          destaque
-          image={sushi}
-          nome="Nome Do Restaurante"
-          avaliacao={4.9}
-          descricao="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!"
-        />
-        <RestauranteCard
-          categoria="Japonesa"
-          destaque
-          image={sushi}
-          nome="Nome Do Restaurante"
-          avaliacao={4.9}
-          descricao="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!"
-        />
-        <RestauranteCard
-          categoria="Japonesa"
-          destaque
-          image={sushi}
-          nome="Nome Do Restaurante"
-          avaliacao={4.9}
-          descricao="Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!"
-        />
+        {restaurantes.map((restaurante) => (
+          <RestauranteCard
+            key={restaurante.id}
+            categoria={restaurante.categoria}
+            destaque={restaurante.destaque}
+            image={restaurante.image}
+            nome={restaurante.nome}
+            avaliacao={restaurante.avaliacao}
+            descricao={restaurante.descricao}
+            id={restaurante.id}
+          />
+        ))}
       </SListaDeRestaurantes>
     </Container>
   )

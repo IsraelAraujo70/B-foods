@@ -13,7 +13,7 @@ const Hero = ({ background, title, category }: HeroProps) => {
     background-image: url(${background});
     background-size: cover;
     background-position: center;
-    height: 30vh;
+    height: 40vh;
   `
   return (
     <>
