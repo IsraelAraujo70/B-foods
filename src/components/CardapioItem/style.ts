@@ -12,12 +12,6 @@ export const ItemBackground = styled.div`
   background-color: ${cores.vermelho};
   color: ${cores.branco};
   padding: 8px;
-  img {
-    width: 100%;
-    height: 167px;
-    object-fit: cover;
-    object-position: center;
-  }
   div {
     display: flex;
     justify-content: space-between;
@@ -37,4 +31,17 @@ export const ItemPrice = styled.p`
 export const ItemPortion = styled.p`
   font-size: 14px;
   color: ${cores.cinza};
+`
+export const ImagemCardapio = styled.div`
+  img {
+    width: 100%;
+    height: 167px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  :hover {
+    transform: scale(1.06);
+  }
 `

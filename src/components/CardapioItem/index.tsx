@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import Button from '../ui/Button'
 import {
+  ImagemCardapio,
   ItemBackground,
   ItemDescription,
   ItemPortion,
   ItemPrice,
   ItemTitle
 } from './style'
+import Modal from '../Modal'
 type Props = {
   image: string
   name: string
@@ -22,10 +25,21 @@ const CardapioItem = ({
   portion,
   id
 }: Props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
+  }
   return (
     <>
       <ItemBackground>
-        <img src={image} alt="" />
+        <ImagemCardapio onClick={handleModalOpen}>
+          <img alt="Imagem do Cardapio" src={image} />
+        </ImagemCardapio>
         <div>
           <ItemTitle>{name}</ItemTitle>
           <ItemPortion>{portion}</ItemPortion>
@@ -39,6 +53,18 @@ const CardapioItem = ({
         </ItemPrice>
         <Button text="Adicionar ao Carrinho" variant="primary" />
       </ItemBackground>
+      {isModalOpen && (
+        <Modal
+          open={isModalOpen}
+          onClose={handleModalClose}
+          id={id}
+          image={image}
+          name={name}
+          description={description}
+          price={price}
+          portion={portion}
+        />
+      )}
     </>
   )
 }
