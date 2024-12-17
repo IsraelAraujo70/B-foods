@@ -1,3 +1,4 @@
+import React from 'react'
 import { AddButton, SaibaMaisBtn } from './style'
 
 type ButtonProps = {

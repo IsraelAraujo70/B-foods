@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Cardapio from '../containers/Cardápio'
 import Loading from '../components/ui/Loading'
+import Cart from '../components/Cart'
 
 const Restaurant = () => {
   const { id } = useParams<{ id: string }>()
@@ -46,6 +47,7 @@ const Restaurant = () => {
         title={restaurante.nome}
       />
       <Cardapio id={restaurante.id} />
+      <Cart />
       <Footer />
     </>
   )

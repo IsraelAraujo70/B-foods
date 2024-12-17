@@ -1,5 +1,7 @@
+import { useDispatch } from 'react-redux'
 import { ShoppingCartIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { open } from '../../store/reducers/cart'
 import { Container } from '../../styles'
 import {
   HeaderBar,
@@ -17,6 +19,10 @@ type Props = {
 }
 
 const Header = ({ variant }: Props) => {
+  const dispatch = useDispatch()
+  const handleCartOpen = () => {
+    dispatch(open())
+  }
   return (
     <>
       {variant === 'true' ? (
@@ -39,7 +45,7 @@ const Header = ({ variant }: Props) => {
               </NavP1>
               <img src={logo} alt="B foods" />
               <NavP2>
-                <a href="">
+                <a href="#" onClick={handleCartOpen}>
                   <p>0 produto(s) no carrinho</p>
                   <ShoppingCartIcon />
                 </a>
