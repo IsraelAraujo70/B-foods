@@ -6,25 +6,18 @@ import restaurantRoutes from './routes/restaurants'
 const app = express()
 const port = process.env.PORT || 3000
 
-const allowedOrigins = process.env.VERCEL_URL
-  ? [
-      `https://${process.env.VERCEL_URL}`,
-      'http://localhost:3000',
-      'http://localhost:5173'
-    ]
-  : ['http://localhost:3000', 'http://localhost:5173']
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'http://localhost:3001',
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined
+].filter((origin): origin is string => Boolean(origin))
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
-      }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
   })
 )
 
