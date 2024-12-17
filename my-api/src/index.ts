@@ -9,7 +9,7 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3000
 
-const allowedOrigins = ['https://b-foods.vercel.app', 'http://localhost:3000']
+const allowedOrigins = ['https://b-foods.vercel.app']
 
 app.use(
   cors({
@@ -25,10 +25,8 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use('/api', restaurantRoutes)
 
 app.listen(port, () => {
-  const environment = process.env.VERCEL_ENV || 'development'
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : `http://localhost:${port}`
+  const environment = process.env.VERCEL_ENV || 'production'
+  const baseUrl = 'https://b-foods.vercel.app'
 
   console.log(`API rodando em ${baseUrl} (${environment})`)
 })
