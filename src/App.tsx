@@ -20,7 +20,7 @@ const rotas = createBrowserRouter([
   }
 ])
 
-function fetchRestaurants() {
+export const fetchRestaurants = () => {
   return fetch(`${API_BASE_URL}/restaurants`)
     .then((response) => response.json())
     .catch((error) => console.error('Error fetching restaurants:', error))

@@ -9,11 +9,9 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3000
 
-const API_BASE_URL = 'https://b-foods.vercel.app/api/restaurants'
-
 app.use(
   cors({
-    origin: 'http://localhost:3001', // Allow requests from this origin
+    origin: 'http://localhost:3000', // Allow requests from this origin
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     optionsSuccessStatus: 200
