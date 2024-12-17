@@ -16,7 +16,7 @@ interface RestaurantState {
 export const fetchRestaurants = createAsyncThunk(
   'restaurants/fetchRestaurants',
   async () => {
-    const response = await fetch(`${API_URL}/restaurants`)
+    const response = await fetch(`${API_URL}/`)
     if (!response.ok) {
       throw new Error(`Failed to fetch restaurants: ${response.statusText}`)
     }
@@ -27,7 +27,7 @@ export const fetchRestaurants = createAsyncThunk(
 export const fetchRestaurantById = createAsyncThunk(
   'restaurants/fetchRestaurantById',
   async (id: number) => {
-    const response = await fetch(`${API_URL}/restaurants/${id}`)
+    const response = await fetch(`${API_URL}/${id}`)
     if (!response.ok) {
       throw new Error(`Failed to fetch restaurant: ${response.statusText}`)
     }

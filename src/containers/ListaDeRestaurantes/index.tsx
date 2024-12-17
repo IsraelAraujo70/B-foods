@@ -1,15 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import RestauranteCard from '../../components/RestauranteCard'
 import { ListaDeRestaurantes as SListaDeRestaurantes } from './styles'
 import { Container } from '../../styles'
-import { useAppSelector } from '../../store/hooks'
+
+interface Restaurante {
+  id: number
+  categoria: string
+  image: string
+  nome: string
+  avaliacao: number
+  descricao: string
+  destaque: boolean
+}
+
+const API_BASE_URL = 'https://b-foods.vercel.app/api'
 
 const ListaDeRestaurantes = () => {
-  const {
-    items: restaurantes,
-    loading,
-    error
-  } = useAppSelector((state) => state.restaurants)
+  const [restaurantes, setRestaurantes] = useState<Restaurante[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/restaurants`)
+      .then((response) => response.json())
+      .then((data) => {
+        setRestaurantes(data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        setError(error.message)
+        setLoading(false)
+      })
+  }, [])
 
   if (loading) {
     return <p>Carregando...</p>

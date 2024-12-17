@@ -7,11 +7,19 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
+
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001']
 
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Allow requests from this origin
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     optionsSuccessStatus: 200
@@ -21,10 +29,6 @@ app.use(
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../public')))
 app.use('/api', restaurantRoutes)
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'index.html'))
-})
 
 app.listen(port, () => {
   const environment = process.env.VERCEL_ENV || 'production'

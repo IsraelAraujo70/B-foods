@@ -3,8 +3,13 @@ import { Restaurantes } from '../data/restaurants'
 
 const router = Router()
 
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001']
+
 router.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+  const origin = req.headers.origin
+  if (origin && allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin)
+  }
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   next()
