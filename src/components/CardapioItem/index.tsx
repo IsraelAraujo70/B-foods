@@ -1,14 +1,16 @@
 import { useState } from 'react'
+import { useAppSelector } from '../../store/hooks'
 import Button from '../ui/Button'
+import Modal from '../Modal'
 import {
-  ImagemCardapio,
   ItemBackground,
   ItemDescription,
-  ItemPortion,
   ItemPrice,
+  ItemPortion,
   ItemTitle
 } from './style'
-import Modal from '../Modal'
+import React from 'react'
+
 type Props = {
   image: string
   name: string
@@ -17,6 +19,7 @@ type Props = {
   portion: string
   id: number
 }
+
 const CardapioItem = ({
   image,
   name,
@@ -26,6 +29,7 @@ const CardapioItem = ({
   id
 }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const { items: restaurants } = useAppSelector((state) => state.restaurants)
 
   const handleModalOpen = () => {
     setIsModalOpen(true)
@@ -34,12 +38,10 @@ const CardapioItem = ({
   const handleModalClose = () => {
     setIsModalOpen(false)
   }
+
   return (
     <>
       <ItemBackground>
-        <ImagemCardapio onClick={handleModalOpen}>
-          <img alt="Imagem do Cardapio" src={image} />
-        </ImagemCardapio>
         <div>
           <ItemTitle>{name}</ItemTitle>
           <ItemPortion>{portion}</ItemPortion>
@@ -51,7 +53,11 @@ const CardapioItem = ({
             currency: 'BRL'
           })}
         </ItemPrice>
-        <Button text="Adicionar ao Carrinho" variant="primary" />
+        <Button
+          text="Adicionar ao Carrinho"
+          variant="primary"
+          onClick={handleModalOpen}
+        />
       </ItemBackground>
       {isModalOpen && (
         <Modal

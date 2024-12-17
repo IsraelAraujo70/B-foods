@@ -1,10 +1,24 @@
+import React from 'react'
 import RestauranteCard from '../../components/RestauranteCard'
 import { ListaDeRestaurantes as SListaDeRestaurantes } from './styles'
 import { Container } from '../../styles'
-import { Restaurant } from '../../models/Restaurant'
-type Props = { restaurantes: Restaurant[] }
+import { useAppSelector } from '../../store/hooks'
 
-const ListaDeRestaurantes = ({ restaurantes }: Props) => {
+const ListaDeRestaurantes = () => {
+  const {
+    items: restaurantes,
+    loading,
+    error
+  } = useAppSelector((state) => state.restaurants)
+
+  if (loading) {
+    return <p>Carregando...</p>
+  }
+
+  if (error) {
+    return <p>Erro: {error}</p>
+  }
+
   return (
     <Container>
       <SListaDeRestaurantes>

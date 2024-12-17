@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/my-api/node_modules
 # testing
 /coverage
 
@@ -17,7 +17,12 @@
 .env.development.local
 .env.test.local
 .env.production.local
+/my-api/.env.local
+/my-api/.env.example
+/my-api/.env
+
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
