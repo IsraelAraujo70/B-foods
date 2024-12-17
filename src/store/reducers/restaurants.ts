@@ -6,6 +6,7 @@ const BASE_URL =
     ? 'http://localhost:3000'
     : 'https://b-foods.vercel.app'
 const API_URL = `${BASE_URL}/api`
+const API_BASE_URL = 'https://b-foods.vercel.app/api/restaurants'
 
 interface RestaurantState {
   items: Restaurant[]
@@ -25,13 +26,13 @@ export const fetchRestaurants = createAsyncThunk(
 )
 
 export const fetchRestaurantById = createAsyncThunk(
-  'restaurants/fetchRestaurantById',
+  'restaurants/fetchById',
   async (id: number) => {
-    const response = await fetch(`${API_URL}/${id}`)
+    const response = await fetch(`${API_BASE_URL}/${id}`)
     if (!response.ok) {
-      throw new Error(`Failed to fetch restaurant: ${response.statusText}`)
+      throw new Error('Failed to fetch restaurant')
     }
-    return await response.json()
+    return response.json()
   }
 )
 
