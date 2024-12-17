@@ -42,7 +42,7 @@ const CardapioItem = ({
     <>
       <ItemBackground>
         <div>
-          <ImagemCardapio>
+          <ImagemCardapio onClick={handleModalOpen}>
             <img src={image} alt={name} />
           </ImagemCardapio>
         </div>

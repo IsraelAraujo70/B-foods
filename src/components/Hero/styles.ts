@@ -16,14 +16,5 @@ export const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 150px;
-  align-items: flex-start;
-
-  @media (max-width: 768px) {
-    gap: 50px;
-  }
-
-  @media (max-width: 480px) {
-    gap: 20px;
-  }
+  height: 40vh;
 `

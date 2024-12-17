@@ -3,6 +3,7 @@ import CardapioItem from '../../components/CardapioItem'
 import { Container } from '../../styles'
 import { CardapioList } from './style'
 import { useAppSelector } from '../../store/hooks'
+import Loading from '../../components/ui/Loading'
 
 type Props = {
   id: number
@@ -18,7 +19,7 @@ const Cardapio = ({ id }: Props) => {
   const restaurant = restaurants.find((r) => r.id === id)
 
   if (loading) {
-    return <p>Carregando...</p>
+    return <Loading />
   }
 
   if (error) {

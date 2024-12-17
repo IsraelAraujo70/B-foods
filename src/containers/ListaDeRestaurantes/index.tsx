@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import RestauranteCard from '../../components/RestauranteCard'
 import { ListaDeRestaurantes as SListaDeRestaurantes } from './styles'
 import { Container } from '../../styles'
+import Loading from '../../components/ui/Loading'
 
 interface Restaurante {
   id: number
@@ -34,7 +35,7 @@ const ListaDeRestaurantes = () => {
   }, [])
 
   if (loading) {
-    return <p>Carregando...</p>
+    return <Loading />
   }
 
   if (error) {

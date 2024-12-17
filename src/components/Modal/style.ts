@@ -20,13 +20,17 @@ export const ModalContent = styled.div`
   background-color: ${cores.vermelho};
   color: #fff;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 60%;
   padding: 32px;
 `
 export const ModalClose = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
+  transition: all 0.3s;
+  :hover {
+    transform: scale(1.1);
+  }
 `
 export const ModalText = styled.div`
   display: flex;

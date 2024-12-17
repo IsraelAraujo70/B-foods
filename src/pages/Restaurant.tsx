@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Cardapio from '../containers/Cardápio'
+import Loading from '../components/ui/Loading'
 
 const Restaurant = () => {
   const { id } = useParams<{ id: string }>()
@@ -25,7 +26,7 @@ const Restaurant = () => {
   const restaurante = restaurants.find((r) => r.id === Number(id))
 
   if (loading) {
-    return <p>Carregando...</p>
+    return <Loading />
   }
 
   if (error) {

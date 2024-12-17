@@ -10,6 +10,7 @@ import {
   Title
 } from './styles'
 import logo from '../../assets/images/Logo.svg'
+import React from 'react'
 
 type Props = {
   variant?: 'true' | 'false'
