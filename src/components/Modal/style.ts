@@ -20,7 +20,7 @@ export const ModalContent = styled.div`
   background-color: ${cores.vermelho};
   color: #fff;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 50% 50%;
   padding: 32px;
 `
 export const ModalClose = styled.div`
