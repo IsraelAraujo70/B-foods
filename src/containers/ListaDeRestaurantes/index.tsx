@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import RestauranteCard from '../../components/RestauranteCard'
-import { ListaDeRestaurantes as SListaDeRestaurantes } from './styles'
+import {
+  ListaDeRestaurantes as SListaDeRestaurantes,
+  AnimatedCard
+} from './styles'
 import { Container } from '../../styles'
 import Loading from '../../components/ui/Loading'
 
@@ -46,19 +50,31 @@ const ListaDeRestaurantes = () => {
     <Container>
       <SListaDeRestaurantes>
         {restaurantes.map((restaurante) => (
-          <RestauranteCard
-            key={restaurante.id}
-            categoria={restaurante.categoria}
-            destaque={restaurante.destaque}
-            image={restaurante.image}
-            nome={restaurante.nome}
-            avaliacao={restaurante.avaliacao}
-            descricao={restaurante.descricao}
-            id={restaurante.id}
-          />
+          <RestauranteObserver key={restaurante.id} restaurante={restaurante} />
         ))}
       </SListaDeRestaurantes>
     </Container>
+  )
+}
+
+const RestauranteObserver = ({ restaurante }: { restaurante: Restaurante }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  })
+
+  return (
+    <AnimatedCard ref={ref} isVisible={inView}>
+      <RestauranteCard
+        categoria={restaurante.categoria}
+        destaque={restaurante.destaque}
+        image={restaurante.image}
+        nome={restaurante.nome}
+        avaliacao={restaurante.avaliacao}
+        descricao={restaurante.descricao}
+        id={restaurante.id}
+      />
+    </AnimatedCard>
   )
 }
 
