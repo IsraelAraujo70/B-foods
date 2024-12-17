@@ -1,3 +1,4 @@
+import React from 'react'
 import { XIcon } from 'lucide-react'
 import {
   ModalBackground,
@@ -8,7 +9,6 @@ import {
   ModalTitle
 } from './style'
 import Button from '../ui/Button'
-import { on } from 'events'
 type ModalProps = {
   open: boolean
   onClose: () => void

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useAppSelector } from '../../store/hooks'
 import Button from '../ui/Button'
 import Modal from '../Modal'
 import {
@@ -29,7 +28,6 @@ const CardapioItem = ({
   id
 }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { items: restaurants } = useAppSelector((state) => state.restaurants)
 
   const handleModalOpen = () => {
     setIsModalOpen(true)
