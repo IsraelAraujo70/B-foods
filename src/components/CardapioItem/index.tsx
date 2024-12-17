@@ -6,7 +6,8 @@ import {
   ItemDescription,
   ItemPrice,
   ItemPortion,
-  ItemTitle
+  ItemTitle,
+  ImagemCardapio
 } from './style'
 import React from 'react'
 
@@ -40,6 +41,11 @@ const CardapioItem = ({
   return (
     <>
       <ItemBackground>
+        <div>
+          <ImagemCardapio>
+            <img src={image} alt={name} />
+          </ImagemCardapio>
+        </div>
         <div>
           <ItemTitle>{name}</ItemTitle>
           <ItemPortion>{portion}</ItemPortion>
