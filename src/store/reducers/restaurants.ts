@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { Restaurant } from '../../models/Restaurant'
 
-const API_URL = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}/api`
-  : 'http://localhost:3000/api'
+const BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://b-foods.vercel.app'
+const API_URL = `${BASE_URL}/api`
 
 interface RestaurantState {
   items: Restaurant[]
@@ -16,9 +18,9 @@ export const fetchRestaurants = createAsyncThunk(
   async () => {
     const response = await fetch(`${API_URL}/restaurants`)
     if (!response.ok) {
-      throw new Error('Failed to fetch restaurants')
+      throw new Error(`Failed to fetch restaurants: ${response.statusText}`)
     }
-    return response.json()
+    return await response.json()
   }
 )
 
@@ -27,11 +29,12 @@ export const fetchRestaurantById = createAsyncThunk(
   async (id: number) => {
     const response = await fetch(`${API_URL}/restaurants/${id}`)
     if (!response.ok) {
-      throw new Error('Failed to fetch restaurant')
+      throw new Error(`Failed to fetch restaurant: ${response.statusText}`)
     }
-    return response.json()
+    return await response.json()
   }
 )
+
 const initialState: RestaurantState = {
   items: [],
   loading: false,
@@ -56,13 +59,22 @@ const restaurantSlice = createSlice({
         state.loading = false
         state.error = action.error.message || 'Erro ao carregar restaurantes'
       })
+      .addCase(fetchRestaurantById.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
       .addCase(fetchRestaurantById.fulfilled, (state, action) => {
+        state.loading = false
         const index = state.items.findIndex((r) => r.id === action.payload.id)
         if (index !== -1) {
           state.items[index] = action.payload
         } else {
           state.items.push(action.payload)
         }
+      })
+      .addCase(fetchRestaurantById.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.error.message || 'Erro ao carregar restaurante'
       })
   }
 })

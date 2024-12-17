@@ -7,6 +7,8 @@ import Home from './pages/home'
 import Restaurant from './pages/Restaurant'
 import store from './store'
 
+const API_BASE_URL = 'https://b-foods.vercel.app/api/restaurants'
+
 const rotas = createBrowserRouter([
   {
     path: '/',
@@ -17,6 +19,12 @@ const rotas = createBrowserRouter([
     element: <Restaurant />
   }
 ])
+
+function fetchRestaurants() {
+  return fetch(`${API_BASE_URL}/restaurants`)
+    .then((response) => response.json())
+    .catch((error) => console.error('Error fetching restaurants:', error))
+}
 
 function App() {
   return (
