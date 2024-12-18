@@ -16,12 +16,15 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Cardapio>) => {
-      console.log('Previous state:', state.items)
-      console.log('Adding item:', action.payload)
-
       state.items = [...state.items, action.payload]
-
-      console.log('Updated state:', state.items)
+    },
+    remove: (state, action: PayloadAction<Cardapio>) => {
+      const index = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      )
+      if (index !== -1) {
+        state.items.splice(index, 1)
+      }
     },
     open: (state) => {
       state.isOpen = true
@@ -35,5 +38,5 @@ const cartSlice = createSlice({
   }
 })
 
-export const { add, open, close, clear } = cartSlice.actions
+export const { add, open, close, clear, remove } = cartSlice.actions
 export default cartSlice.reducer

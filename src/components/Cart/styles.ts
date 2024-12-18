@@ -29,8 +29,27 @@ export const Sidebar = styled.aside`
   padding: 32px 8px 0 8px;
   max-width: 360px;
   width: 100%;
+  ul {
+    padding: 4px;
+    max-height: 400px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: ${cores.vermelho};
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${cores.branco};
+      border-radius: 4px;
+    }
+  }
+  p {
+    margin-top: 16px;
+  }
   button {
     width: 100%;
+    margin-bottom: 16px;
   }
 `
 export const PrecoContainer = styled.div`
@@ -38,4 +57,8 @@ export const PrecoContainer = styled.div`
   justify-content: space-between;
   margin-top: 16px;
   margin-bottom: 16px;
+`
+export const EmptyCart = styled.div`
+  display: flex;
+  justify-content: center;
 `

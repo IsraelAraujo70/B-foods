@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { close } from '../../store/reducers/cart'
 import { RootState } from '../../store'
 import Button from '../ui/Button'
-import { Overlay, CartContainer, Sidebar, PrecoContainer } from './styles'
+import {
+  Overlay,
+  CartContainer,
+  Sidebar,
+  PrecoContainer,
+  EmptyCart
+} from './styles'
 import CartItem from '../ui/CartItem'
 
 const Cart = () => {
@@ -25,29 +31,39 @@ const Cart = () => {
   }
   return (
     <>
-      <CartContainer className={isOpen ? 'is-open' : ''}>
-        <Overlay onClick={handleClose} />
-        <Sidebar>
-          <ul>
-            {items.map((item) => {
-              return (
-                <CartItem
-                  image={item.foto}
-                  price={item.preco}
-                  title={item.nome}
-                  key={item.id}
-                />
-              )
-            })}
-          </ul>
-          <p>{items.length} itens no carrinho</p>
-          <PrecoContainer>
-            <b>Valor total</b>
-            <b>{totalPrice()}</b>
-          </PrecoContainer>
-          <Button variant="primary" text="Continuar com a entrega" />
-        </Sidebar>
-      </CartContainer>
+      {items.length > 0 ? (
+        <CartContainer className={isOpen ? 'is-open' : ''}>
+          <Overlay onClick={handleClose} />
+          <Sidebar>
+            <ul>
+              {items.map((item) => {
+                return (
+                  <CartItem
+                    image={item.foto}
+                    price={item.preco}
+                    title={item.nome}
+                    id={item.id}
+                    key={item.id}
+                  />
+                )
+              })}
+            </ul>
+            <p>{items.length} itens no carrinho</p>
+            <PrecoContainer>
+              <b>Valor total</b>
+              <b>{totalPrice()}</b>
+            </PrecoContainer>
+            <Button variant="primary" text="Continuar com a entrega" />
+          </Sidebar>
+        </CartContainer>
+      ) : (
+        <CartContainer className={isOpen ? 'is-open' : ''}>
+          <Overlay onClick={handleClose} />
+          <Sidebar>
+            <EmptyCart>Nenhum item no carrinho</EmptyCart>
+          </Sidebar>
+        </CartContainer>
+      )}
     </>
   )
 }
