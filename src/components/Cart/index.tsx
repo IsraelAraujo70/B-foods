@@ -4,12 +4,24 @@ import { close } from '../../store/reducers/cart'
 import { RootState } from '../../store'
 import Button from '../ui/Button'
 import { Overlay, CartContainer, Sidebar, PrecoContainer } from './styles'
+import CartItem from '../ui/CartItem'
 
 const Cart = () => {
   const { isOpen } = useSelector((state: RootState) => state.carts)
+  const { items } = useSelector((state: RootState) => state.carts)
   const dispatch = useDispatch()
   const handleClose = () => {
     dispatch(close())
+  }
+  const totalPrice = () => {
+    return items
+      .reduce((acc, item) => {
+        return acc + item.preco
+      }, 0)
+      .toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      })
   }
   return (
     <>
@@ -17,14 +29,21 @@ const Cart = () => {
         <Overlay onClick={handleClose} />
         <Sidebar>
           <ul>
-            <li>
-              <h3>Nome do item</h3>
-            </li>
+            {items.map((item) => {
+              return (
+                <CartItem
+                  image={item.foto}
+                  price={item.preco}
+                  title={item.nome}
+                  key={item.id}
+                />
+              )
+            })}
           </ul>
-          <p>X itens no carrinho</p>
+          <p>{items.length} itens no carrinho</p>
           <PrecoContainer>
             <b>Valor total</b>
-            <b>R$ xxx</b>
+            <b>{totalPrice()}</b>
           </PrecoContainer>
           <Button variant="primary" text="Continuar com a entrega" />
         </Sidebar>

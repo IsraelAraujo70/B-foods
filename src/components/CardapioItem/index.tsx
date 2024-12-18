@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { add } from '../../store/reducers/cart'
 import Button from '../ui/Button'
 import Modal from '../Modal'
 import {
@@ -29,6 +31,20 @@ const CardapioItem = ({
   id
 }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const dispatch = useDispatch()
+  const handleAddToCart = () => {
+    console.log('Add to cart clicked')
+    dispatch(
+      add({
+        id,
+        foto: image,
+        nome: name,
+        descricao: description,
+        preco: price,
+        porcao: portion
+      })
+    )
+  }
 
   const handleModalOpen = () => {
     setIsModalOpen(true)
@@ -60,7 +76,7 @@ const CardapioItem = ({
         <Button
           text="Adicionar ao Carrinho"
           variant="primary"
-          onClick={handleModalOpen}
+          onClick={handleAddToCart}
         />
       </ItemBackground>
       {isModalOpen && (

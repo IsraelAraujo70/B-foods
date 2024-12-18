@@ -6,11 +6,12 @@ type ButtonProps = {
   text: string
   onClick?: () => void
 }
-const Button = ({ variant, text }: ButtonProps) => {
+
+const Button = ({ variant, text, onClick }: ButtonProps) => {
   return variant === 'primary' ? (
-    <AddButton>{text}</AddButton>
+    <AddButton onClick={onClick}>{text}</AddButton>
   ) : (
-    <SaibaMaisBtn>{text}</SaibaMaisBtn>
+    <SaibaMaisBtn onClick={onClick}>{text}</SaibaMaisBtn>
   )
 }
 

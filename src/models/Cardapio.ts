@@ -1,9 +1,9 @@
 export class Cardapio {
-  foto: string
-  preco: number
   id: number
+  foto: string
   nome: string
   descricao: string
+  preco: number
   porcao: string
 
   constructor(

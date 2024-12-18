@@ -1,7 +1,9 @@
-import { useDispatch } from 'react-redux'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { ShoppingCartIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { open } from '../../store/reducers/cart'
+import { RootState } from '../../store'
 import { Container } from '../../styles'
 import {
   HeaderBar,
@@ -12,7 +14,6 @@ import {
   Title
 } from './styles'
 import logo from '../../assets/images/Logo.svg'
-import React from 'react'
 
 type Props = {
   variant?: 'true' | 'false'
@@ -20,6 +21,7 @@ type Props = {
 
 const Header = ({ variant }: Props) => {
   const dispatch = useDispatch()
+  const { items } = useSelector((state: RootState) => state.carts)
   const handleCartOpen = () => {
     dispatch(open())
   }
@@ -46,7 +48,7 @@ const Header = ({ variant }: Props) => {
               <img src={logo} alt="B foods" />
               <NavP2>
                 <a href="#" onClick={handleCartOpen}>
-                  <p>0 produto(s) no carrinho</p>
+                  <p>{items.length} produto(s) no carrinho</p>
                   <ShoppingCartIcon />
                 </a>
               </NavP2>
