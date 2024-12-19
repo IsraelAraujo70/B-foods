@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const HeaderBar = styled.header`
   background-color: ${cores.amareloClaro};
@@ -8,6 +8,20 @@ export const HeaderBar = styled.header`
 export const HeaderBarContent = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: ${breakpoints.desktop}) {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    & > *:nth-child(1) {
+      order: 2;
+    }
+    & > *:nth-child(2) {
+      order: 1;
+    }
+    & > *:nth-child(3) {
+      order: 3;
+    }
+  }
 `
 export const HeaderBarContentV = styled.div`
   display: flex;
@@ -30,6 +44,9 @@ export const NavP1 = styled.p`
   a {
     color: ${cores.vermelho};
   }
+  @media (max-width: ${breakpoints.desktop}) {
+    margin: 16px 0;
+  }
 `
 
 export const NavP2 = styled.p`
@@ -41,5 +58,11 @@ export const NavP2 = styled.p`
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+  @media (max-width: ${breakpoints.desktop}) {
+    margin: 16px 0;
+    a {
+      flex-direction: column-reverse;
+    }
   }
 `

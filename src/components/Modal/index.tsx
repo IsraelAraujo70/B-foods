@@ -5,6 +5,7 @@ import {
   ModalClose,
   ModalContent,
   ModalDescription,
+  ModalImage,
   ModalText,
   ModalTitle
 } from './style'
@@ -39,7 +40,9 @@ const Modal = ({
         <ModalClose onClick={onClose}>
           <XIcon size={24} color="#fff" />
         </ModalClose>
-        <img src={image} alt="" />
+        <ModalImage>
+          <img src={image} alt="" />
+        </ModalImage>
         <ModalText>
           <ModalTitle>{name}</ModalTitle>
           <ModalDescription>{description}</ModalDescription>

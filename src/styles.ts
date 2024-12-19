@@ -7,6 +7,10 @@ export const cores = {
   amareloClaro: '#FCFFA6',
   laranjaClaro: '#FFF8F2'
 }
+export const breakpoints = {
+  desktop: '1024px',
+  tablet: '767px'
+}
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -26,4 +30,8 @@ export const Container = styled.div`
   max-width: 1024px;
   margin: 0 auto;
   width: 100%;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    max-width: 80%;
+  }
 `

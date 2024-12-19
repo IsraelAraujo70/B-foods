@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Overlay = styled.div`
   position: absolute;
@@ -50,6 +50,9 @@ export const Sidebar = styled.aside`
   button {
     width: 100%;
     margin-bottom: 16px;
+  }
+  @media (max-width: ${breakpoints.desktop}) {
+    max-width: 80%;
   }
 `
 export const PrecoContainer = styled.div`

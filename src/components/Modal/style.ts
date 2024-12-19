@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const ModalBackground = styled.div`
   z-index: 500;
@@ -18,10 +18,15 @@ export const ModalContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: ${cores.vermelho};
-  color: #fff;
+  color: ${cores.branco};
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 0.5fr 1fr;
   padding: 32px;
+  @media (max-width: ${breakpoints.desktop}) {
+    grid-template-columns: 1fr;
+    width: 90%;
+    padding: 16px;
+  }
 `
 export const ModalClose = styled.div`
   position: absolute;
@@ -46,4 +51,18 @@ export const ModalDescription = styled.p`
   font-weight: 400;
   line-height: 24px;
   text-align: justify;
+`
+export const ModalImage = styled.div`
+  max-width: 280px;
+  max-height: 280px;
+  width: 100%;
+  width: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    margin: 16px 0;
+  }
 `

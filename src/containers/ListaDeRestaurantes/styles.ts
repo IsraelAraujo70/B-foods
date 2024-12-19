@@ -1,4 +1,5 @@
 import { styled, keyframes } from 'styled-components'
+import { breakpoints } from '../../styles'
 
 const fadeIn = keyframes`
   from {
@@ -24,4 +25,7 @@ export const ListaDeRestaurantes = styled.ul`
   grid-template-columns: 1fr 1fr;
   row-gap: 3rem;
   column-gap: 2rem;
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+  }
 `
