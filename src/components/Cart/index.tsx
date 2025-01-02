@@ -31,9 +31,14 @@ const Cart = () => {
         currency: 'BRL'
       })
   }
+
   const handleFormOpen = () => {
     setFormOpen(true)
   }
+  const handleFormClose = () => {
+    setFormOpen(false)
+  }
+
   return (
     <>
       {!formOpen ? (
@@ -78,7 +83,10 @@ const Cart = () => {
         <CartContainer className={isOpen ? 'is-open' : ''}>
           <Overlay onClick={handleClose} />
           <Sidebar>
-            <Form />
+            <Form
+              handleFormClose={handleFormClose}
+              handleSidebarClose={handleClose}
+            />
           </Sidebar>
         </CartContainer>
       )}
