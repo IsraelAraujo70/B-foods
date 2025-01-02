@@ -23,6 +23,8 @@ export const ItemTitle = styled.h3`
 `
 export const ItemDescription = styled.p`
   font-size: 14px;
+  max-height: 34px;
+  height: 100%;
 `
 export const ItemPrice = styled.p`
   font-size: 16px;

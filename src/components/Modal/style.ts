@@ -20,7 +20,7 @@ export const ModalContent = styled.div`
   background-color: ${cores.vermelho};
   color: ${cores.branco};
   display: grid;
-  grid-template-columns: 0.5fr 1fr;
+  grid-template-columns: 0.8fr 1fr;
   padding: 32px;
   @media (max-width: ${breakpoints.desktop}) {
     grid-template-columns: 1fr;
