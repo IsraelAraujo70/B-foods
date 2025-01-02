@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useCreateOrderMutation } from '../../services/api'
 import { FormCardSchema, FormSchema } from '../../schemas/validation'
@@ -119,6 +119,9 @@ const Form = ({ handleFormClose, handleSidebarClose }: FormProps) => {
   const handleConcluir = () => {
     if (handleSidebarClose) {
       handleSidebarClose()
+    }
+    if (handleFormClose) {
+      handleFormClose()
     }
   }
 
