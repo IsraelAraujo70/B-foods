@@ -10,6 +10,8 @@ import {
   ModalTitle
 } from './style'
 import Button from '../ui/Button'
+import { useDispatch } from 'react-redux'
+import { add } from '../../store/reducers/cart'
 type ModalProps = {
   open: boolean
   onClose: () => void
@@ -28,8 +30,23 @@ const Modal = ({
   name,
   description,
   price,
-  portion
+  portion,
+  id
 }: ModalProps) => {
+  const dispatch = useDispatch()
+  const handleAddToCart = () => {
+    console.log('Add to cart clicked')
+    dispatch(
+      add({
+        id,
+        foto: image,
+        nome: name,
+        descricao: description,
+        preco: price,
+        porcao: portion
+      })
+    )
+  }
   return (
     <>
       <ModalBackground
@@ -57,6 +74,7 @@ const Modal = ({
                 }
               )}`}
               variant="primary"
+              onClick={handleAddToCart}
             ></Button>
           </div>
         </ModalText>
