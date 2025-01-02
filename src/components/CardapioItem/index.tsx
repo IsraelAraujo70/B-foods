@@ -33,7 +33,6 @@ const CardapioItem = ({
   const [isModalOpen, setIsModalOpen] = useState(false)
   const dispatch = useDispatch()
   const handleAddToCart = () => {
-    console.log('Add to cart clicked')
     dispatch(
       add({
         id,

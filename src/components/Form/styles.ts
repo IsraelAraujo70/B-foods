@@ -24,6 +24,9 @@ export const FormS = styled.form`
   }
 `
 export const FormConfirmation = styled.div`
+  p {
+    margin-bottom: 1em;
+  }
   :last-child {
     margin-bottom: 1em;
   }
